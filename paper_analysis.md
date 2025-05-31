@@ -12,3 +12,32 @@
     pediatric brain tumors._
     In Proceedings of SPIE Medical Imaging 2023: Image Processing (Vol. 12464).
     https://doi.org/10.1117/12.2654245
+
+### Analysis of paper 1
+
+Existing brain segmentation tools are optimized for specific age groups: ChildMetrix for children and FreeSurfer / Icobrain v5.9 for adults. This separation hinders consistent brain monitoring across ages. Simarro et al. developed a unified deep learning model trained on T1-weighted MRIs from 390 patients aged 2–81, covering various pathologies and scanner types (Philips, Siemens, GE, Fujifilm). The model, called icobrain-dl, includes preprocessing (bias correction, registration, intensity normalization), and a multi-task U-Net CNN with 2 tasks:
+
+- Task 1: Brain tissue segmentation (background + WM, GM, CSF = 4 regions)
+- Task 2: Brain structure segmentation (22 + background = 23 anatomical regions)
+
+Task1 and task2 shared encoder features, and complemented each other.
+
+More details:
+
+- Semi-automated labels with expert correction to reduce labeling cost.
+- Patch-based learning (128 x 128 x 128 sized patch).
+- Data augmentation using GMM for intensity augmentation.
+- Optimizer: Adam.
+- Initial LR=0.001, early stopping.
+- Loss: weighted sum of soft dice + cross-entropy (α_task1=1, α_task2=10)
+
+Result:
+
+Trained models: icobrain-dl(cross-age generalized model), icobrain-dl-p(pediatric-only), icobrain-dl-a(adult-only)
+
+Performance:
+
+- Pediatric: Dice 82.2% (for generalized model vs 80.8% for pediatric-only),
+  HD 3.26mm (for generalized model vs 3.23mm for pediatric-only)
+- Adult: Dice 82.6% (for generalized model vs 81.9% for adult-only),
+  HD 2.27mm (for generalized model vs 2.37mm for adult-only)
