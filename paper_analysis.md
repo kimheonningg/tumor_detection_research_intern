@@ -41,3 +41,18 @@ Performance:
   HD 3.26mm (for generalized model vs 3.23mm for pediatric-only)
 - Adult: Dice 82.6% (for generalized model vs 81.9% for adult-only),
   HD 2.27mm (for generalized model vs 2.37mm for adult-only)
+
+### Analysis of paper 2
+
+This study analyzes Diffuse Midline Glioma -which is a rare but malignant central nervous system tumor that occurs in children- using MRI. Although DMG has a very low incidence, it is known that DMG is a fatal disease. Therefore MRI images are extremely valuable for predicting disease progression and survival. Although adult brain tumors have abundant imaging data and analytical expertise, models trained on adult cases cannot be directly applied to pediatric DMG.
+
+This paper used the pretraining and transfer learning strategy by: First pretraining on adult brain tumor data, and then finetuning on pediatric data through transfer learning. Also, they used the SegResNet architecture.
+
+Segmentation accuracy was compared under four conditions:
+
+1. pretraining only
+2. pretraining + finetuning on 50% of the pediatric data
+3. no pretraining + full finetuning
+4. pretraining + full finetuning
+
+The highest accuracy was achieved with 4. pretraining + full finetuning.
