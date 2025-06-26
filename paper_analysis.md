@@ -5,15 +5,23 @@
     _A deep learning model for brain segmentation across pediatric and adult
     populations._
     Scientific Reports, 14, 11735. https://doi.org/10.1038/s41598-024-61798-6
-
 2.  Liu, X., Bonner, E. R., Jiang, Z., Roth, H., Packer, R., Bornhorst, M., & Linguraru, M. G.
     (2023).
     _From adult to pediatric: Deep learning-based automatic segmentation of rare
     pediatric brain tumors._
     In Proceedings of SPIE Medical Imaging 2023: Image Processing (Vol. 12464).
     https://doi.org/10.1117/12.2654245
+3.  Fu, J., Bendazzoli, S., Smedby, Ö., & Moreno, R. (2024).
+    _Unsupervised domain adaptation for pediatric brain tumor segmentation._
+    arXiv preprint arXiv:2406.16848. https://doi.org/10.48550/arXiv.2406.16848
 
 ### Analysis of paper 1
+
+Simarro, J., Meyer, M. I., Van Eyndhoven, S., Phan, T. V., Billiet, T., Sima, D. M., &
+Ortibus, E. (2024).
+_A deep learning model for brain segmentation across pediatric and adult
+populations._
+Scientific Reports, 14, 11735. https://doi.org/10.1038/s41598-024-61798-6
 
 Existing brain segmentation tools are optimized for specific age groups: ChildMetrix for children and FreeSurfer / Icobrain v5.9 for adults. This separation hinders consistent brain monitoring across ages. Simarro et al. developed a unified deep learning model trained on T1-weighted MRIs from 390 patients aged 2–81, covering various pathologies and scanner types (Philips, Siemens, GE, Fujifilm). The model, called icobrain-dl, includes preprocessing (bias correction, registration, intensity normalization), and a multi-task U-Net CNN with 2 tasks:
 
@@ -44,6 +52,13 @@ Performance:
 
 ### Analysis of paper 2
 
+Liu, X., Bonner, E. R., Jiang, Z., Roth, H., Packer, R., Bornhorst, M., & Linguraru, M. G.
+(2023).
+_From adult to pediatric: Deep learning-based automatic segmentation of rare
+pediatric brain tumors._
+In Proceedings of SPIE Medical Imaging 2023: Image Processing (Vol. 12464).
+https://doi.org/10.1117/12.2654245
+
 This study analyzes Diffuse Midline Glioma -which is a rare but malignant central nervous system tumor that occurs in children- using MRI. Although DMG has a very low incidence, it is known that DMG is a fatal disease. Therefore MRI images are extremely valuable for predicting disease progression and survival. Although adult brain tumors have abundant imaging data and analytical expertise, models trained on adult cases cannot be directly applied to pediatric DMG.
 
 This paper used the pretraining and transfer learning strategy by: First pretraining on adult brain tumor data, and then finetuning on pediatric data through transfer learning. Also, they used the SegResNet architecture.
@@ -56,3 +71,29 @@ Segmentation accuracy was compared under four conditions:
 4. pretraining + full finetuning
 
 The highest accuracy was achieved with 4. pretraining + full finetuning.
+
+### Analysis of paper 3
+
+Fu, J., Bendazzoli, S., Smedby, Ö., & Moreno, R. (2024).
+_Unsupervised domain adaptation for pediatric brain tumor segmentation._
+arXiv preprint arXiv:2406.16848. https://doi.org/10.48550/arXiv.2406.16848
+
+Pediatric brain-tumor segmentation faces two fundamental difficulties:
+
+1. The domain shift between adult and pediatric MRIs reduces generalization. In one study, when a model trained on adult data was applied to pediatric cases, the Dice score for the Tumor Core(TC) region dropped from 0.8788 to 0.2639, highlighting the differences.
+2. Pediatric data is scarce.
+
+In this paper, the DA-nnUNet -built on the standard nnUNet architecture, but with a domain classifier with a Gradient Reversal Layer (GRL) added- is proposed. This architecture allows domain-adversarial training so that the shared encoder learns domain-invariant features. The GRL strength \( \alpha \) is initialized at 0 and gradually increased.
+
+The proposed model is compared with the following 8 models:
+
+1. Adult‑only training (nnUNet, BraTS adult)
+2. Pediatric‑only training(nnUNet, BraTS‑PEDs)
+3. Combined training on adult + pediatric data (ideal upper bound)
+4. Pre‑train adult → fine‑tune pediatric
+5. Freeze backbone, retrain head on pediatric
+6. Same as 5 plus extra fine‑tuning
+7. Freeze encoder, fine‑tune rest on pediatric
+8. Freeze decoder, fine‑tune rest on pediatric
+
+The biggest performance gain of DA-nnUNet is observed in the TC region.
