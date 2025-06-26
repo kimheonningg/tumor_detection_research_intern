@@ -14,14 +14,14 @@
 3.  Fu, J., Bendazzoli, S., Smedby, Ö., & Moreno, R. (2024).
     _Unsupervised domain adaptation for pediatric brain tumor segmentation._
     arXiv preprint arXiv:2406.16848. https://doi.org/10.48550/arXiv.2406.16848
-4.  Yen, CT., Tsao, CY. Lightweight convolutional neural network for chest X-ray images classification. 
-    Sci Rep 14, 29759 (2024). https://doi.org/10.1038/s41598-024-80826-z
-5.  Zhang Y, Chen Z, Yang X. Light-M: An efficient lightweight medical image segmentation framework
-    for resource-constrained IoMT. Comput Biol Med. 2024 Mar;170:108088. doi: 10.1016/j.compbiomed.2024.108088. Epub 2024 Feb 3. PMID: 38320339
-6.  Zhang, Z., Huang, R., & Huang, N. (2024, October). RepMedSAM: Segment Anything in Medical Images
-    with Lightweight CNN. In Proceedings of the CVPR 2024 Workshop on MedSAMonLaptop. https://openreview.net/forum?id=AXeZItjN2z openreview.net
-7.  Oktay, O., Schlemper, J., Le Folgoc, L., Lee, M., Heinrich, M., Misawa, K., Mori, K., McDonagh, S.,
+4.  Oktay, O., Schlemper, J., Le Folgoc, L., Lee, M., Heinrich, M., Misawa, K., Mori, K., McDonagh, S.,
     Hammerla, N. Y., Kainz, B., Glocker, B., & Rueckert, D. (2018). Attention U-Net: Learning where to look for the pancreas. arXiv. https://arxiv.org/abs/1804.03999
+5.  Yen, CT., Tsao, CY. Lightweight convolutional neural network for chest X-ray images classification. 
+    Sci Rep 14, 29759 (2024). https://doi.org/10.1038/s41598-024-80826-z
+6.  Zhang Y, Chen Z, Yang X. Light-M: An efficient lightweight medical image segmentation framework
+    for resource-constrained IoMT. Comput Biol Med. 2024 Mar;170:108088. doi: 10.1016/j.compbiomed.2024.108088. Epub 2024 Feb 3. PMID: 38320339
+7.  Zhang, Z., Huang, R., & Huang, N. (2024, October). RepMedSAM: Segment Anything in Medical Images
+    with Lightweight CNN. In Proceedings of the CVPR 2024 Workshop on MedSAMonLaptop. https://openreview.net/forum?id=AXeZItjN2z openreview.net
 
 ### Analysis of paper 1
 
