@@ -8,8 +8,8 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from tqdm import tqdm
-from augmentation_utils import generate_gmm_image
-from cddgm_inference import apply_cddgm
+# from augmentation_utils import generate_gmm_image
+# from cddgm_inference import apply_cddgm
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 class BrainDataset(Dataset):
@@ -57,12 +57,12 @@ class AugBrainDataset(BrainDataset):
 
     def __getitem__(self, idx):
         image_patch, label_patch = super().__getitem__(idx)
-        if self.apply_gmm:
-            image_patch = generate_gmm_image(image_patch.squeeze(0).numpy())
-            image_patch = torch.from_numpy(image_patch).unsqueeze(0)
-        if self.apply_cddgm:
-            image_patch = apply_cddgm(image_patch.squeeze(0).numpy())
-            image_patch = torch.from_numpy(image_patch).unsqueeze(0)
+        # if self.apply_gmm:
+        #     image_patch = generate_gmm_image(image_patch.squeeze(0).numpy())
+        #     image_patch = torch.from_numpy(image_patch).unsqueeze(0)
+        # if self.apply_cddgm:
+        #     image_patch = apply_cddgm(image_patch.squeeze(0).numpy())
+        #     image_patch = torch.from_numpy(image_patch).unsqueeze(0)
         return image_patch, label_patch
 
 ############## BLOCKS ##############
@@ -265,8 +265,8 @@ print("Pretrained model saved to pretrained_brats.pth")
 
 ############## FINE TUNING ##############
 # use pretrained model for multi-task learning
-brats_dataset = AugBrainDataset(path_to_brats_train_imgs, path_to_brats_train_labels, apply_gmm=True, apply_cddgm=True)
-pediatric_dataset = AugBrainDataset(path_to_ped_train_imgs, path_to_ped_train_labels, apply_gmm=True, apply_cddgm=True)
+brats_dataset = BrainDataset(path_to_brats_train_imgs, path_to_brats_train_labels)
+pediatric_dataset = BrainDataset(path_to_ped_train_imgs, path_to_ped_train_labels)
 
 brats_loader = DataLoader(brats_dataset, batch_size=2, shuffle=True, num_workers=1)
 pediatric_loader = DataLoader(pediatric_dataset, batch_size=2, shuffle=True, num_workers=1)
